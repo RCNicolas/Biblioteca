@@ -49,27 +49,24 @@ export const getAll = async () => {
   let res = await (await fetch(`${uri}/editorial`, config)).json();
   return res;
 };
+export const deleteOne = async (id) => {
+  if (typeof id !== "number")
+    return {
+      status: 400,
+      message: `El datos '${id}' no cumple con el formato`,
+    };
+  config.method = "DELETE";
+  // config.body = JSON.stringify(obj);
+  let res = await (await fetch(`${uri}/editorial/${id}`, config)).json();
+  return res;
+};
 
-// console.log(await post({
-//     name:"Editorial 3",
-//     direction:"Direccion 3",
-//     phone:"321392321",
-// }));
-// console.log(await post({
-//     name:"Santiago",
-//     direction:"Marquez",
-//     phone:"Venezolano",
-// }));
 // console.log(await post({
 //     name:"Kevin",
 //     direction:"Esteba",
 //     phone:"Japones",
 // }));
-// console.log(await post({
-//     name:"Cristian",
-//     direction:"Pardo",
-//     phone:"Italiano",
-// }));
 
+// console.log(deleteOne(1));
 // console.log( await getOne(1));
 // console.log(await getAll());

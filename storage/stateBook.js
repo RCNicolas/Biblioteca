@@ -44,19 +44,18 @@ export const getAll = async () => {
   let res = await (await fetch(`${uri}/stateBook`, config)).json();
   return res;
 };
+export const deleteOne = async (id) => {
+  if (typeof id !== "number")
+    return {
+      status: 400,
+      message: `El datos '${id}' no cumple con el formato`,
+    };
+  config.method = "DELETE";
+  // config.body = JSON.stringify(obj);
+  let res = await (await fetch(`${uri}/stateBook/${id}`, config)).json();
+  return res;
+};
 
-// console.log(await post({
-//     name:"Excelente",
-//     description:"Libro en perfecto estado."
-// }));
-// console.log(await post({
-//     name:"Santiago",
-//     description:"Marquez"
-// }));
-// console.log(await post({
-//     name:"Kevin",
-//     description:"Esteba"
-// }));
 // console.log(await post({
 //     name:"Cristian",
 //     description:"Pardo"
@@ -64,3 +63,4 @@ export const getAll = async () => {
 
 // console.log( await getOne(1));
 // console.log(await getAll());
+// console.log(deleteOne(1));
