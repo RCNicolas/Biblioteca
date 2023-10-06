@@ -1,4 +1,4 @@
-import { getOne as getOneUser } from "./usuario.js";
+import { getOne as getOneUser } from "./user.js";
 import { getOne as getOneBook } from "./book.js";
 import { env } from "../config.js";
 
@@ -86,11 +86,11 @@ export const getRelationships = async () => {
   let res = await (await fetch(`${uri}/loan`, config)).json();
   res = await Promise.all(
     res.map(async (data, id) => {
-      let { userId: usId, bookId: boId} = data;
-      let cat = await getOneUser(usId);
-      let aut = await getOneBook(boId);
-      data.userId = cat;
-      data.bookId = aut;
+      let { userId: usId, bookId: booId} = data;
+      let us = await getOneUser(usId);
+      let boo = await getOneBook(booId);
+      data.userId = us;
+      data.bookId = boo;
       return data;
     })
   );

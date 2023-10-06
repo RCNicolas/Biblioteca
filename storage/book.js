@@ -169,7 +169,7 @@ export const putOne = async (obj = {}) => {
   return res;
 };
 
-console.log(await getRelationships());
+// console.log(await getRelationships());
 
 // console.log(await post({
 //     title:"El olor del miedo",
