@@ -1,0 +1,170 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Drama"
+    },
+    {
+      "id": 2,
+      "name": "Romance"
+    },
+    {
+      "id": 3,
+      "name": "Acción"
+    }
+  ],
+  "editorial": [
+    {
+      "id": 1,
+      "name": "Editorial 1",
+      "direction": "direccion 1",
+      "phone": "21212121"
+    },
+    {
+      "id": 2,
+      "name": "Editorial 2",
+      "direction": "direccion 2",
+      "phone": "45454545"
+    },
+    {
+      "name": "Editorial 3",
+      "direction": "Direccion 3",
+      "phone": "321392321",
+      "id": 3
+    }
+  ],
+  "stateBook": [
+    {
+      "name": "mantenimiento",
+      "description": "descripcion ",
+      "id": 1
+    },
+    {
+      "name": "guardado",
+      "description": "descripcion ",
+      "id": 2
+    },
+    {
+      "name": "Excelente",
+      "description": "Libro en perfecto estado.",
+      "id": 3
+    }
+  ],
+  "books": [
+    {
+      "id": 2,
+      "title": "Libro Dos",
+      "date": "2012-05-23",
+      "isbn": "63452375",
+      "pagination": 800,
+      "authorId": 1,
+      "categoryId": 1,
+      "editorialId": 1,
+      "stateId": 1
+    },
+    {
+      "title": "Prometeo encadenado",
+      "fecha": "2020-01-01",
+      "authorId": 1,
+      "categoryId": 1,
+      "editorialId": 1,
+      "isbn": "16758",
+      "pagination": 296,
+      "stateId": 1,
+      "id": 3
+    },
+    {
+      "title": "Valle de la calma",
+      "fecha": "2018-04-02",
+      "authorId": 1,
+      "categoryId": 3,
+      "editorialId": 1,
+      "isbn": "273059",
+      "pagination": 296,
+      "stateId": 1,
+      "id": 4
+    },
+    {
+      "title": "FORASTERA",
+      "fecha": "2006-08-30",
+      "authorId": 1,
+      "categoryId": 2,
+      "editorialId": 1,
+      "isbn": "9788418173745",
+      "pagination": 764,
+      "stateId": 1,
+      "id": 5
+    },
+    {
+      "title": "El olor del miedo",
+      "fecha": "2023-08-30",
+      "authorId": 1,
+      "categoryId": 1,
+      "editorialId": 1,
+      "isbn": "380554",
+      "pagination": 552,
+      "stateId": 1,
+      "id": 6
+    }
+  ],
+  "loan": [
+    {
+      "id": 1,
+      "userId": 1,
+      "bookId": 1,
+      "loanDate": "2020-10-02",
+      "returnDate": "2020-11-02",
+      "state": "Excelente"
+    },
+    {
+      "userId": 1,
+      "bookId": 1,
+      "loanDate": "2021-06-05",
+      "returnDate": "2020-03-03",
+      "state": "Excelente",
+      "id": 2
+    }
+  ],
+  "booking": [
+    {
+      "id": 1,
+      "userId": 1,
+      "bookId": 2,
+      "dateBooking": "2020-04-23",
+      "dateBookingEnd": "2020-05-23",
+      "state": "Excelente"
+    }
+  ],
+  "author": [
+    {
+      "id": 1,
+      "name": "Nicolas",
+      "last-name": "Ruiz",
+      "nacionality": "colombian"
+    },
+    {
+      "id": 2,
+      "name": "Santiago",
+      "last-name": "Camacho",
+      "nacionality": "colombian"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Nicolas",
+      "last-name": "Ruiz",
+      "direction": "direccion 1",
+      "phone": "321321321",
+      "email": "nicosandr22gmail.com"
+    },
+    {
+      "id": 1,
+      "name": "Santiago",
+      "last-name": "Ruiz",
+      "direction": "direccion 2",
+      "phone": "321321321",
+      "email": "nicorsan@gmail.com"
+    }
+  ]
+}
