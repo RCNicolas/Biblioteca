@@ -19,7 +19,6 @@ const validarExtructura = (data = {}) => {
     state = null,
   } = data;
   let dateLoan = new Date(loanDate);
-
   if (!(dateLoan && dateLoan.getFullYear() <= 2040))
     return {
       status: 400,
@@ -97,21 +96,28 @@ export const getRelationships = async () => {
 
   return res;
 };
+// export const deleteOne = async (id) => {
+//   if (typeof id !== "number")
+//     return {
+//       status: 400,
+//       message: `El datos '${id}' no cumple con el formato`,
+//     };
+//   config.method = "DELETE";
+//   // config.body = JSON.stringify(obj);
+//   let res = await (await fetch(`${uri}/loan/${id}`, config)).json();
+//   console.log(`${uri}/loan/${id}`);
+//   return res;
+// };
 export const deleteOne = async (id) => {
-  if (typeof id !== "number")
-    return {
-      status: 400,
-      message: `El datos '${id}' no cumple con el formato`,
-    };
   config.method = "DELETE";
-  // config.body = JSON.stringify(obj);
+  // config.body = "";
   let res = await (await fetch(`${uri}/loan/${id}`, config)).json();
   return res;
 };
 // console.log(
 //   await post({
-//     userId: 1,
-//     bookId: 1,
+//     userId: 2,
+//     bookId: 2,
 //     loanDate: "2021-06-05",
 //     returnDate: "2020-03-03",
 //     state: "Bueno"
@@ -122,4 +128,4 @@ export const deleteOne = async (id) => {
 // console.log(await getAll());
 
 // console.log(await getRelationships());
-// console.log(deleteOne(1));
+console.log(deleteOne(1));

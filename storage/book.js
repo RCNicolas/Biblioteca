@@ -1,5 +1,7 @@
 import { getOne as getOneCategory } from "./categories.js";
 import { getOne as getOneAuthor } from "./author.js";
+import  { getOne as getOneEditorial } from "./editorial.js";
+import  { getOne as getOneState } from "./stateBook.js";
 import { env } from "../config.js";
 
 const uri = `${env.ssl + env.hostName}:${env.port}`;
@@ -13,19 +15,19 @@ const validarExtructura = (data = {}) => {
     return { status: 400, message: `Usuario envie los datos` };
   const {
     title = null,
-    releaseDate = null,
-    isbn = null,
-    pagination = null,
+    dateLoan = null,
     authorId = null,
     categoryId = null,
     editorialId = null,
+    isbn = null,
+    pagination = null,
     stateBookId = null,
   } = data;
-  let date = new Date(releaseDate);
+  let date = new Date(dateLoan);
   if (!(date && date.getFullYear() <= 2040))
     return {
       status: 400,
-      message: `La releaseDate '${releaseDate}' no cumple con el formato`,
+      message: `La dateLoan '${dateLoan}' no cumple con el formato`,
     };
 
   if (typeof authorId !== "number")
@@ -65,20 +67,21 @@ const validarExtructura = (data = {}) => {
     };
   return data;
 };
+
 const validarDataBasic = (data = {}) => {
   if (data.constructor.name !== "Object" || Object.keys(data).length == 0)
     return { status: 400, message: `Usuario envie los datos` };
   const {
     title = null,
-    releaseDate = null,
+    dateLoan = null,
     isbn = null,
     pagination = null,
   } = data;
-  let date = new Date(releaseDate);
+  let date = new Date(dateLoan);
   if (!(date && date.getFullYear() <= 2040))
     return {
       status: 400,
-      message: `La releaseDate '${releaseDate}' no cumple con el formato`,
+      message: `La dateLoan '${dateLoan}' no cumple con el formato`,
     };
   if (typeof title !== "string")
     return {
@@ -115,9 +118,14 @@ export const getRelationships = async () => {
   let res = await (await fetch(`${uri}/books`, config)).json();
   res = await Promise.all(
     res.map(async (data, id) => {
-      let { categoryId: catId, authorId: autId } = data;
+      let { categoryId: catId, authorId: autId, stateBookId: staId, editorialId: editId} = data;
       let cat = await getOneCategory(catId);
       let aut = await getOneAuthor(autId);
+      let state = await getOneState(staId);
+      let edit = await getOneEditorial(editId)
+
+      data.stateBookId = state;
+      data.editorialId = edit;
       data.categoryId = cat;
       data.authorId = aut;
       return data;
@@ -126,6 +134,7 @@ export const getRelationships = async () => {
 
   return res;
 };
+
 export const post = async (obj = {}) => {
   obj = validarExtructura(obj);
   if (obj.status) return obj;
@@ -135,14 +144,20 @@ export const post = async (obj = {}) => {
   let res = await (await fetch(`${uri}/books`, config)).json();
   return res;
 };
+
+// export const deleteOne = async (id) => {
+//   if (typeof id !== "number")
+//     return {
+//       status: 400,
+//       message: `El datos '${id}' no cumple con el formato`,
+//     };
+//   config.method = "DELETE";
+//   let res = await (await fetch(`${uri}/books/${id}`, config)).json();
+//   return res;
+// };
 export const deleteOne = async (id) => {
-  if (typeof id !== "number")
-    return {
-      status: 400,
-      message: `El datos '${id}' no cumple con el formato`,
-    };
   config.method = "DELETE";
-  // config.body = JSON.stringify(obj);
+  // config.body = "";
   let res = await (await fetch(`${uri}/books/${id}`, config)).json();
   return res;
 };
@@ -169,49 +184,23 @@ export const putOne = async (obj = {}) => {
   return res;
 };
 
-// console.log(await getRelationships());
+// console.log( await deleteOne(5));
+// console.log(await getOne(1));
 
+// console.log(await getRelationships());
 // console.log(await post({
 //     title:"El olor del miedo",
-//     fecha: "2023-08-30",
-//     authorId:1, 
-//     categoryId:1,
-//     editorialId:1,
-//     isbn:"380554",
-//     pagination: 552,
-//     stateBookId:1
-// }));
-// console.log(await post({
-//     title:"FORASTERA",
-//     fecha: "2006-08-30",
-//     authorId:1,
-//     categoryId:2,
-//     editorialId:1,
-//     isbn:"9788418173745",
-//     pagination: 764,
-//     stateBookId:1
-// }));
-// console.log(await post({
-//     title:"Valle de la calma",
-//     fecha: "2018-04-02",
-//     authorId:1,
-//     categoryId:3,
-//     editorialId:1,
-//     isbn:"273059",
-//     pagination: 296,
-//     stateBookId:1
-// }));
-// console.log(await post({
-//     title:"Prometeo encadenado",
-//     fecha: "2020-01-01",
+//     dateLoan: "2023-08-30",
 //     authorId:1,
 //     categoryId:1,
 //     editorialId:1,
-//     isbn:"16758",
-//     pagination: 296,
+//     isbn:"111411441",
+//     pagination: 44578,
 //     stateBookId:1
 // }));
 
+console.log(await getRelationships());
+
 // console.log(await getAll());
-// console.log(await deleteOne(1));
+
 // console.log(await putOne({id: 1, limit:"2.0.0", title: "Miguel", isbn: "456", pagination:700}));

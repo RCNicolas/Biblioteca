@@ -97,14 +97,20 @@ export const getRelationships = async () => {
 
   return res;
 };
+// export const deleteOne = async (id) => {
+//   if (typeof id !== "number")
+//     return {
+//       status: 400,
+//       message: `El datos '${id}' no cumple con el formato`,
+//     };
+//   config.method = "DELETE";
+//   // config.body = JSON.stringify(obj);
+//   let res = await (await fetch(`${uri}/booking/${id}`, config)).json();
+//   return res;
+// };
 export const deleteOne = async (id) => {
-  if (typeof id !== "number")
-    return {
-      status: 400,
-      message: `El datos '${id}' no cumple con el formato`,
-    };
   config.method = "DELETE";
-  // config.body = JSON.stringify(obj);
+  // config.body = "";
   let res = await (await fetch(`${uri}/booking/${id}`, config)).json();
   return res;
 };

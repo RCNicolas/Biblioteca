@@ -84,7 +84,6 @@ export const deleteOne = async (id) => {
 //   phone: "3003003000",
 //   email: "marioluigi@gmail.com"
 // }));
-// console.log(await post({
 
 // console.log( await getAll());
-console.log(deleteOne(1));
+console.log( await deleteOne(2));
